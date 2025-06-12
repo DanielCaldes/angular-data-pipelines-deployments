@@ -1,27 +1,61 @@
-# DataPipelinesDeployments
+# Tienda Angular con Fake Store API
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.0.
+Este proyecto es una demostración práctica del uso de Angular, integrando enrutamiento, módulos, consumo de APIs externas y uso de SCSS para estilos.
 
-## Development server
+Desplegado en GitHub Pages: https://danielcaldes.github.io/angular-data-pipelines-deployments/
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Tecnologías usadas
+- Angular
+- SCSS
+- TypeScript
+- Angular Material
+- Fake Store API (https://fakestoreapi.com)
+- GitHub Pages para despliegue
 
-## Code scaffolding
+## Cómo ejecutar localmente
+1. ``git clone https://github.com/DanielCaldes/angular-data-pipelines-deployments.git``
+2. ``cd angular-data-pipelines-deployments``
+3. ``npm install``
+4. ``ng serve``
+5. Accede a la app en ``http://localhost:4200``
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Cómo desplegar en GitHub Pages
+1. ``ng build --configuration production --base-href "https://<tu-usuario>.github.io/<nombre-del-repo>/"``
+2. ``npx angular-cli-ghpages --dir=dist/<nombre-del-repo>``
 
-## Build
+## Descripción del proyecto
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Este proyecto contiene:
 
-## Running unit tests
+1. **Módulo: Tienda (StoreModule)**
+- Permite navegar entre las distintas categorías de productos mediante un select de Material.
+- Al seleccionar una categoría, muestra todos los productos asociados.
+- Posibilidad de ver información detallada de cada producto seleccionado mediante los expansion panel de material.
+- Como extra se ha añadido la posibilidad de ordenar el listado de los productos mediante diferentes condiciones: Nombre, Precio y Valoraciones.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+2. **Consumo de datos desde Fake Store API**
+- Se realiza mediante un servicio personalizado que obtienen todo el listado de productos o un producto por id.
 
-## Running end-to-end tests
+## Estructura del proyecto
+```
+📁 src/
+└── 📁 app/
+    ├── 📁 store/
+    │   ├── 📁 components/
+    │   │   └── 📁 store/
+    │   │   ├── 📄 store.component.html
+    │   │   ├── 📄 store.component.scss
+    │   │   ├── 📄 store.component.spec.ts
+    │   │   └── 📄 store.component.ts
+    │   ├── 📁 services/
+    │   │   ├── 📄 store.service.spec.ts
+    │   │   └── 📄 store.service.ts
+    │   └── 📁 models/
+    │       └── 📄 product.model.ts
+    ├── 📄 app.component.html
+    ├── 📄 app.component.css
+    ├── 📄 app.component.spec.ts
+    └── 📄 app.component.ts
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+El proyecto está completamente estilizado con SCSS para una mejor presentación visual.

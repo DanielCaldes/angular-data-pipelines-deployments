@@ -1,0 +1,56 @@
+<div class="store-container">
+    <mat-form-field class="categories-select">
+    <mat-label>Categories</mat-label>
+    <mat-select [formControl]="categories" multiple>
+        <mat-select-trigger>
+        {{categories.value?.[0] || ''}}
+        @if ((categories.value?.length || 0) > 1) {
+            <span class="example-additional-selection">
+            (+{{(categories.value?.length || 0) - 1}} {{categories.value?.length === 2 ? 'other' : 'others'}})
+            </span>
+        }
+        </mat-select-trigger>
+        @for (categorie of uniqueCategories; track categorie) {
+            <mat-option [value]="categorie">{{categorie}}</mat-option>
+        }
+    </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="sort-select">
+        <mat-label>Sort by</mat-label>
+        <mat-select [value]="selectedSort" (selectionChange)="onSortChange($event.value)">
+            <mat-option value="title-asc">Name (A-Z)</mat-option>
+            <mat-option value="title-desc">Name (Z-A)</mat-option>
+            <mat-option value="price-asc">Price (low to high)</mat-option>
+            <mat-option value="price-desc">Price (high to low)</mat-option>
+            <mat-option value="rating-asc">Rating (low to high)</mat-option>
+            <mat-option value="rating-desc">Rating (high to low)</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)" class="accordion" *ngFor="let product of filteredProducts">
+        <mat-expansion-panel-header class="accordion-header">
+        <mat-panel-title class="accordion-header-title">
+            {{ product.title }}
+        </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="product-details">
+            <img src="{{product.image}}" class="product-details-image">
+            <div class="product-details-rating">
+                <div class="product-details-rating-star">
+                    <span *ngFor="let star of [1,2,3,4,5]">
+                        <mat-icon *ngIf="product.rating.rate >= star">star</mat-icon>
+                        <mat-icon *ngIf="product.rating.rate >= star - 0.5 && product.rating.rate < star">star_half</mat-icon>
+                        <mat-icon *ngIf="product.rating.rate < star - 0.5">star_border</mat-icon>
+                    </span>
+                </div>
+                <p>{{product.rating.rate}} ({{product.rating.count}})</p>
+            </div>
+            <p><strong>Category:</strong> {{ product.category }}</p>
+            <p><strong>Price:</strong> {{ product.price }}$</p>
+            <p><strong>Description:</strong> {{ product.description }}</p>
+        </div>
+    </mat-expansion-panel>
+    </mat-accordion>
+</div>

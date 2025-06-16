@@ -19,10 +19,6 @@ Desplegado en GitHub Pages: https://danielcaldes.github.io/angular-data-pipeline
 4. ``ng serve``
 5. Accede a la app en ``http://localhost:4200``
 
-## Cómo desplegar en GitHub Pages
-1. ``ng build --configuration production --base-href "https://<tu-usuario>.github.io/<nombre-del-repo>/"``
-2. ``npx angular-cli-ghpages --dir=dist/<nombre-del-repo>``
-
 ## Descripción del proyecto
 
 Este proyecto contiene:
